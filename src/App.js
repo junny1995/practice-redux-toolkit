@@ -1,20 +1,19 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { minus, plus } from "./countSlice";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const minus = () => {
-    setCount((prev) => prev - 1);
-  };
-  const plus = () => {
-    setCount((prev) => prev + 1);
-  };
-
+  const count = useSelector((state) => state.count.value);
+  const dispatch = useDispatch();
+  console.log(count);
   return (
     <>
-      <button onClick={minus}>-</button>
+      <button type="submit" onClick={() => dispatch(minus())}>
+        -
+      </button>
       <span>Value: {count}</span>
-      <button onClick={plus}>+</button>
+      <button type="submit" onClick={() => dispatch(plus())}>
+        +
+      </button>
     </>
   );
 }
